@@ -1,44 +1,24 @@
-# Objects In Motion - Client Review Website
+# Objects In Motion - Emily James client review build
 
-Interactive website strategy and redesign prepared by Emily James for Robert Kalinovich / Objects In Motion.
+This repository contains the interactive website direction created by Emily James for Robert Kalinovich / Objects In Motion.
 
-## What Robert can test from the front end
+## Included in this review build
+- Premium responsive design across all core pages
+- Searchable portfolio and dynamic artwork detail pages
+- Saved-work shortlist
+- Interactive room-placement study
+- Multi-step commission, contact and professional project briefs
+- Email-ready and downloadable front-end enquiry summaries
+- Collector list pathway
+- Direct-answer content and draft structured data for SEO/AEO planning
+- Notes from Emily wherever Robert must confirm business information or where Wix Studio must provide a secure connection
 
-- Complete multi-page navigation
-- Responsive desktop and mobile layouts
-- Searchable and filterable portfolio
-- Dynamic individual-artwork pages
-- Working saved-artwork shortlist with email and copy actions
-- Interactive room-placement study with upload, positioning controls and image download
-- Multi-step commission brief with validation
-- Placement and contact forms
-- Local image-selection previews
-- Email-ready and downloadable enquiry summaries
-- Collector-preview request flow
-- Contextual review notes written by Emily James
+## Connected after approval in Wix Studio
+- Full Wix CMS portfolio migration
+- Secure form submission and file uploads
+- Wix Contacts and branded automations
+- Confirmed live inventory, price, deposits, taxes, shipping and payment rules
+- Production SEO settings, redirects, structured data validation, Search Console and analytics
+- Removal of all review notes and noindex controls before launch
 
-## What will be connected in Wix Studio after approval
-
-- Complete portfolio in Wix CMS and dynamic artwork pages
-- Secure form and photograph uploads
-- Wix Contacts, notifications and branded automations
-- Confirmed inventory, pricing, payment, deposit and shipping rules
-- SEO titles, descriptions, redirects and Search Console
-- Analytics and conversion tracking
-- Accessibility, browser and performance testing
-- Existing domain and final launch
-
-## Deploy to Vercel through GitHub
-
-Keep every file and the `assets` folder at the repository root, beside `index.html`.
-
-After copying the files into your cloned GitHub repository, run:
-
-```bash
-git status
-git add -A
-git commit -m "Update Objects In Motion client review"
-git push origin main
-```
-
-Vercel will redeploy automatically when the repository is connected to the Vercel project.
+The Vercel version is intentionally noindex. It demonstrates the approved experience without changing the current live Wix website.

@@ -14,7 +14,7 @@
     <button class="menu-button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span class="sr-only">Menu</span></button>
     <nav class="site-nav" id="site-nav">
       ${nav.map(([id,url,label])=>`<a href="${url}" class="${current===id?'active':''}">${label}</a>`).join('')}
-      <a class="nav-contact" href="contact.html">Start a conversation <span>↗</span></a>
+      <a class="nav-contact" href="commissions.html">Commission a sculpture <span>↗</span></a>
     </nav>
   </header>`;
 
@@ -32,7 +32,7 @@
     <div class="footer-bottom"><span>© 2020–2026 Robert Kalinovich</span><span>Website strategy and redesign by Emily James</span><a href="#top">Back to top ↑</a></div>
   </footer>
   <div class="mobile-action"><a href="shop.html">Collect</a><a href="commissions.html#enquire">Commission</a></div>
-  <button class="design-notes-launch" type="button" aria-controls="design-notes" aria-expanded="false"><span>i</span> Emily's review</button>
+  <button class="design-notes-launch" type="button" aria-controls="design-notes" aria-expanded="false"><span>i</span> My notes for Rob</button>
   <aside class="design-notes-panel" id="design-notes" aria-hidden="true">
     <button class="design-notes-close" type="button" aria-label="Close design notes">×</button>
     <p class="kicker">My redesign plan for Objects In Motion</p>
@@ -40,7 +40,7 @@
     <p>The customer-facing language across the website is the copy I propose for the finished site. I have kept the tone focused on the sculptures, the collector experience and the practical confidence a serious buyer needs.</p>
     <div class="review-plan-block"><h3>What I have already designed</h3><p>A cinematic first impression, four clear buying paths, a searchable portfolio, individual artwork stories, commission and placement briefs, a professional-project route, collector capture, mobile actions, saved-work shortlists and an interactive room-placement study.</p></div>
     <div class="review-plan-block"><h3>Why I designed it this way</h3><p>The website must do more than display past work. It should help a visitor understand what can be collected, imagine an original commission, see how the process works and take a useful next step without searching through the site.</p></div>
-    <div class="review-plan-block"><h3>What I will connect inside Wix Studio</h3><p>I will rebuild this approved direction natively in Wix Studio, connect the complete portfolio to Wix CMS, route forms and photographs into Wix Contacts, add branded automations, confirm inventory and payment rules, preserve SEO through redirects, and install analytics so we can see which works and traffic sources create real enquiries.</p></div>
+    <div class="review-plan-block"><h3>What I will connect inside Wix Studio</h3><p>I will rebuild this approved direction natively in Wix Studio, connect the complete portfolio to Wix CMS, route forms and photographs into Wix Contacts, add branded automations, confirm inventory and payment rules, preserve existing search visibility through redirects, and install analytics so we can see which works and traffic sources create real enquiries.</p></div><div class="review-plan-block"><h3>How I will help more people find the work</h3><p>I have planned dedicated search themes for rolling ball sculpture, custom kinetic sculpture, private commissions and professional spaces. I will also structure the artist, artwork and FAQ content so search engines and AI answer experiences can understand and cite the business more accurately.</p></div>
     <p>Small <strong class="inline-i">i</strong> markers identify the few places where I need your confirmation or a live Wix connection. They are review notes for you and would not remain on the public website after launch.</p>
     <div class="design-signoff"><strong>Emily James</strong><span>Website strategy, design and conversion direction</span></div>
   </aside>
@@ -61,14 +61,14 @@
       <button class="form-result-close" type="button" aria-label="Close">×</button>
       <p class="kicker">Your enquiry is ready</p>
       <h2 id="form-result-title">Choose how to continue.</h2>
-      <p class="form-result-intro">The information below has been formatted into a clear brief. You can open it in your email application, download a copy, or copy the text.</p>
+      <p class="form-result-intro">Your answers have been organized into a clear brief. Open it in your email application, download a copy, or copy the text.</p>
       <pre class="form-result-summary"></pre>
       <div class="form-result-actions">
         <a class="button gold form-email" href="#">Open email ↗</a>
         <button class="button dark form-download" type="button">Download brief ↓</button>
         <button class="button dark form-copy" type="button">Copy text</button>
       </div>
-      <p class="form-result-footnote">In this review version, selected photographs stay on the device and can be attached when the email opens. In Wix Studio, they will upload securely with the submission and appear with the contact record.</p>
+      <p class="form-result-footnote">Selected photographs remain on this device and can be attached when the email opens. The small note beside each upload explains how I will connect secure file submission inside Wix Studio.</p>
     </div>
   </div>`;
 
@@ -139,6 +139,7 @@
     popover.style.left = `${left}px`;
     popover.style.top = `${top}px`;
   }
+  document.querySelectorAll('.review-note').forEach(b=>{if(!b.getAttribute('aria-label'))b.setAttribute('aria-label','Read Emily’s note for Rob')});
   document.addEventListener('mouseover', e=>{const b=e.target.closest('.review-note'); if(b && !pinnedNote) positionNote(b)});
   document.addEventListener('mouseout', e=>{const b=e.target.closest('.review-note'); if(b && !pinnedNote && popover) popover.hidden=true});
   document.addEventListener('focusin', e=>{const b=e.target.closest('.review-note'); if(b) positionNote(b)});
@@ -174,7 +175,7 @@
 
   function formToBrief(form){
     const type = form.dataset.formType || 'enquiry';
-    const titleMap={commission:'Objects In Motion — Commission Project Brief',visualize:'Objects In Motion — Placement Brief',contact:'Objects In Motion — Website Enquiry',collector:'Objects In Motion — Collector Preview Request'};
+    const titleMap={commission:'Objects In Motion — Commission Project Brief',visualize:'Objects In Motion — Placement Brief',contact:'Objects In Motion — General Enquiry',collector:'Objects In Motion — Collector Preview Request'};
     const lines=[titleMap[type]||'Objects In Motion Enquiry','',`Prepared: ${new Date().toLocaleString()}`,''];
     const data=new FormData(form);
     for(const [key,value] of data.entries()){
@@ -183,7 +184,7 @@
     }
     const files=[...form.querySelectorAll('input[type="file"]')].flatMap(i=>[...i.files].map(f=>f.name));
     if(files.length){lines.push('',`Selected photographs: ${files.join(', ')}`,'Note: please attach these files manually when the email opens.');}
-    lines.push('','Prepared through the Objects In Motion website review.');
+    lines.push('','Prepared through the Objects In Motion website.');
     return {type,title:titleMap[type]||'Objects In Motion Enquiry',text:lines.join('\n')};
   }
 
@@ -221,7 +222,7 @@
   const shortlistText=()=>shortlist.length?['Objects In Motion - saved works','',...shortlist.map((w,i)=>`${i+1}. ${w.title}${w.status?` - ${w.status}`:''}\n   ${location.origin}${location.pathname.replace(/[^/]*$/,'')}artwork.html?id=${w.id}`),'','I would like to discuss availability and/or an original commission inspired by this shortlist.'].join('\n'):'Objects In Motion - no works saved yet.';
   function syncSaveButtons(){document.querySelectorAll('[data-save-id]').forEach(btn=>{const saved=shortlist.some(w=>w.id===btn.dataset.saveId);btn.classList.toggle('saved',saved);btn.setAttribute('aria-pressed',String(saved));const label=btn.querySelector('[data-save-label]');if(label)label.textContent=saved?'Saved':'Save work';});}
   function renderShortlist(){
-    if(shortlistLaunch){shortlistLaunch.querySelector('span').textContent=String(shortlist.length);shortlistLaunch.classList.toggle('has-items',shortlist.length>0)}
+    if(shortlistLaunch){shortlistLaunch.querySelector('span').textContent=String(shortlist.length);shortlistLaunch.classList.toggle('has-items',shortlist.length>0);shortlistLaunch.classList.toggle('is-empty',shortlist.length===0)}
     if(shortlistItems){shortlistItems.innerHTML=shortlist.length?shortlist.map(w=>`<article><img src="${w.fallback||w.image||'assets/images/detail-track.jpg'}" alt=""><div><strong>${w.title}</strong><span>${w.status||'Selected work'}</span></div><button type="button" data-remove-shortlist="${w.id}" aria-label="Remove ${w.title}">×</button></article>`).join(''):'<p class="shortlist-empty">No works saved yet. Open the portfolio or an artwork page and choose <strong>Save work</strong>.</p>'}
     if(shortlistEmail){const text=shortlistText();shortlistEmail.href=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent('Objects In Motion - saved works')}&body=${encodeURIComponent(text)}`;shortlistEmail.classList.toggle('disabled',!shortlist.length)}
     syncSaveButtons();persistShortlist();
