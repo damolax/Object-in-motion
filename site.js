@@ -29,20 +29,33 @@
       <div><span>Explore</span><a href="portfolio.html">Portfolio</a><a href="commissions.html">Commission</a><a href="shop.html">Collect</a><a href="spaces.html">For spaces</a><a href="visualize.html">Visualize in your space</a></div>
       <div><span>Contact</span><a href="mailto:${STUDIO_EMAIL}">${STUDIO_EMAIL}</a><a href="tel:+14037034425">+1 403 703 4425</a><p>Cochrane, Alberta, Canada</p></div>
     </div>
-    <div class="footer-bottom"><span>© 2020–2026 Robert Kalinovich</span><span>Website redesign concept by Emily James</span><a href="#top">Back to top ↑</a></div>
+    <div class="footer-bottom"><span>© 2020–2026 Robert Kalinovich</span><span>Website strategy and redesign by Emily James</span><a href="#top">Back to top ↑</a></div>
   </footer>
   <div class="mobile-action"><a href="shop.html">Collect</a><a href="commissions.html#enquire">Commission</a></div>
-  <button class="design-notes-launch" type="button" aria-controls="design-notes" aria-expanded="false"><span>i</span> Design notes</button>
+  <button class="design-notes-launch" type="button" aria-controls="design-notes" aria-expanded="false"><span>i</span> Emily's review</button>
   <aside class="design-notes-panel" id="design-notes" aria-hidden="true">
     <button class="design-notes-close" type="button" aria-label="Close design notes">×</button>
-    <p class="kicker">Prepared for Objects In Motion</p>
-    <h2>I designed this interactive direction to strengthen first impression and create clearer paths to a sale or commission.</h2>
-    <p>I used Robert’s verified public content and existing sculpture assets. The navigation, portfolio search and filters, artwork pages, multi-step briefs, file previews, downloadable summaries and email-ready enquiry flows can all be tested from the front end.</p>
-    <p>Small <strong class="inline-i">i</strong> markers identify the few areas that require Robert’s confirmation or a live Wix Studio connection, such as current inventory, secure uploads, automations and payment rules.</p>
+    <p class="kicker">My redesign plan for Objects In Motion</p>
+    <h2>Rob, I designed this direction to make the work feel as exceptional online as it does in motion.</h2>
+    <p>The customer-facing language across the website is the copy I propose for the finished site. I have kept the tone focused on the sculptures, the collector experience and the practical confidence a serious buyer needs.</p>
+    <div class="review-plan-block"><h3>What I have already designed</h3><p>A cinematic first impression, four clear buying paths, a searchable portfolio, individual artwork stories, commission and placement briefs, a professional-project route, collector capture, mobile actions, saved-work shortlists and an interactive room-placement study.</p></div>
+    <div class="review-plan-block"><h3>Why I designed it this way</h3><p>The website must do more than display past work. It should help a visitor understand what can be collected, imagine an original commission, see how the process works and take a useful next step without searching through the site.</p></div>
+    <div class="review-plan-block"><h3>What I will connect inside Wix Studio</h3><p>I will rebuild this approved direction natively in Wix Studio, connect the complete portfolio to Wix CMS, route forms and photographs into Wix Contacts, add branded automations, confirm inventory and payment rules, preserve SEO through redirects, and install analytics so we can see which works and traffic sources create real enquiries.</p></div>
+    <p>Small <strong class="inline-i">i</strong> markers identify the few places where I need your confirmation or a live Wix connection. They are review notes for you and would not remain on the public website after launch.</p>
     <div class="design-signoff"><strong>Emily James</strong><span>Website strategy, design and conversion direction</span></div>
   </aside>
   <div class="notes-scrim" hidden></div>
   <div class="note-popover" role="tooltip" hidden></div>
+  <button class="shortlist-launch" type="button" aria-controls="shortlist-panel" aria-expanded="false"><span>0</span> Saved works</button>
+  <aside class="shortlist-panel" id="shortlist-panel" aria-hidden="true">
+    <button class="shortlist-close" type="button" aria-label="Close saved works">×</button>
+    <p class="kicker">Your shortlist</p>
+    <h2>Keep the works that hold your attention.</h2>
+    <p class="shortlist-intro">Save works as you explore, then send the list as a starting point for an availability or commission conversation.</p>
+    <div class="shortlist-items"></div>
+    <div class="shortlist-actions"><a class="button gold shortlist-email" href="#">Open email ↗</a><button class="button dark shortlist-copy" type="button">Copy list</button><button class="text-button shortlist-clear" type="button">Clear all</button></div>
+  </aside>
+  <div class="shortlist-scrim" hidden></div>
   <div class="form-result" role="dialog" aria-modal="true" aria-labelledby="form-result-title" hidden>
     <div class="form-result-card">
       <button class="form-result-close" type="button" aria-label="Close">×</button>
@@ -55,7 +68,7 @@
         <button class="button dark form-download" type="button">Download brief ↓</button>
         <button class="button dark form-copy" type="button">Copy text</button>
       </div>
-      <p class="form-result-footnote">Photographs selected in this preview cannot be attached automatically by the browser. They can be added manually to the email. In Wix Studio, uploads will be stored with the submission.</p>
+      <p class="form-result-footnote">In this review version, selected photographs stay on the device and can be attached when the email opens. In Wix Studio, they will upload securely with the submission and appear with the contact record.</p>
     </div>
   </div>`;
 
@@ -170,7 +183,7 @@
     }
     const files=[...form.querySelectorAll('input[type="file"]')].flatMap(i=>[...i.files].map(f=>f.name));
     if(files.length){lines.push('',`Selected photographs: ${files.join(', ')}`,'Note: please attach these files manually when the email opens.');}
-    lines.push('','Sent from the Objects In Motion website concept.');
+    lines.push('','Prepared through the Objects In Motion website review.');
     return {type,title:titleMap[type]||'Objects In Motion Enquiry',text:lines.join('\n')};
   }
 
@@ -191,6 +204,38 @@
   result?.addEventListener('click',e=>{if(e.target===result)closeResult()});
   downloadBtn?.addEventListener('click',()=>{if(!currentBrief)return;const blob=new Blob([currentBrief.text],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=currentBrief.title.replace(/[^a-z0-9]+/gi,'_')+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
   copyBtn?.addEventListener('click',async()=>{if(!currentBrief)return;await navigator.clipboard.writeText(currentBrief.text);copyBtn.textContent='Copied';setTimeout(()=>copyBtn.textContent='Copy text',1500)});
+
+  // Saved-work shortlist: fully usable from the front end and retained in the visitor's browser.
+  const shortlistLaunch=document.querySelector('.shortlist-launch');
+  const shortlistPanel=document.querySelector('.shortlist-panel');
+  const shortlistScrim=document.querySelector('.shortlist-scrim');
+  const shortlistItems=document.querySelector('.shortlist-items');
+  const shortlistEmail=document.querySelector('.shortlist-email');
+  const shortlistCopy=document.querySelector('.shortlist-copy');
+  const shortlistClear=document.querySelector('.shortlist-clear');
+  let shortlist=[];
+  try{shortlist=JSON.parse(localStorage.getItem('oim-shortlist')||'[]')}catch(_e){shortlist=[]}
+  const allWorks=()=>Array.isArray(window.OIM_WORKS)?window.OIM_WORKS:[];
+  const findWork=id=>allWorks().find(w=>w.id===id)||shortlist.find(w=>w.id===id)||{id,title:id};
+  const persistShortlist=()=>{try{localStorage.setItem('oim-shortlist',JSON.stringify(shortlist))}catch(_e){}};
+  const shortlistText=()=>shortlist.length?['Objects In Motion - saved works','',...shortlist.map((w,i)=>`${i+1}. ${w.title}${w.status?` - ${w.status}`:''}\n   ${location.origin}${location.pathname.replace(/[^/]*$/,'')}artwork.html?id=${w.id}`),'','I would like to discuss availability and/or an original commission inspired by this shortlist.'].join('\n'):'Objects In Motion - no works saved yet.';
+  function syncSaveButtons(){document.querySelectorAll('[data-save-id]').forEach(btn=>{const saved=shortlist.some(w=>w.id===btn.dataset.saveId);btn.classList.toggle('saved',saved);btn.setAttribute('aria-pressed',String(saved));const label=btn.querySelector('[data-save-label]');if(label)label.textContent=saved?'Saved':'Save work';});}
+  function renderShortlist(){
+    if(shortlistLaunch){shortlistLaunch.querySelector('span').textContent=String(shortlist.length);shortlistLaunch.classList.toggle('has-items',shortlist.length>0)}
+    if(shortlistItems){shortlistItems.innerHTML=shortlist.length?shortlist.map(w=>`<article><img src="${w.fallback||w.image||'assets/images/detail-track.jpg'}" alt=""><div><strong>${w.title}</strong><span>${w.status||'Selected work'}</span></div><button type="button" data-remove-shortlist="${w.id}" aria-label="Remove ${w.title}">×</button></article>`).join(''):'<p class="shortlist-empty">No works saved yet. Open the portfolio or an artwork page and choose <strong>Save work</strong>.</p>'}
+    if(shortlistEmail){const text=shortlistText();shortlistEmail.href=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent('Objects In Motion - saved works')}&body=${encodeURIComponent(text)}`;shortlistEmail.classList.toggle('disabled',!shortlist.length)}
+    syncSaveButtons();persistShortlist();
+  }
+  function toggleShortlist(id){const index=shortlist.findIndex(w=>w.id===id);if(index>=0)shortlist.splice(index,1);else{const w=findWork(id);shortlist.push({id:w.id,title:w.title,status:w.status,image:w.image,fallback:w.fallback})}renderShortlist()}
+  function openShortlist(){shortlistPanel?.classList.add('open');shortlistPanel?.setAttribute('aria-hidden','false');shortlistLaunch?.setAttribute('aria-expanded','true');if(shortlistScrim)shortlistScrim.hidden=false}
+  function closeShortlist(){shortlistPanel?.classList.remove('open');shortlistPanel?.setAttribute('aria-hidden','true');shortlistLaunch?.setAttribute('aria-expanded','false');if(shortlistScrim)shortlistScrim.hidden=true}
+  document.addEventListener('click',e=>{const save=e.target.closest('[data-save-id]');if(save){e.preventDefault();e.stopPropagation();toggleShortlist(save.dataset.saveId);return}const remove=e.target.closest('[data-remove-shortlist]');if(remove){toggleShortlist(remove.dataset.removeShortlist)}});
+  document.addEventListener('keydown',e=>{const save=e.target.closest?.('[data-save-id]');if(save&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggleShortlist(save.dataset.saveId)}});
+  shortlistLaunch?.addEventListener('click',()=>shortlistPanel?.classList.contains('open')?closeShortlist():openShortlist());
+  document.querySelector('.shortlist-close')?.addEventListener('click',closeShortlist);shortlistScrim?.addEventListener('click',closeShortlist);
+  shortlistClear?.addEventListener('click',()=>{shortlist=[];renderShortlist()});
+  shortlistCopy?.addEventListener('click',async()=>{if(!shortlist.length)return;await navigator.clipboard.writeText(shortlistText());shortlistCopy.textContent='Copied';setTimeout(()=>shortlistCopy.textContent='Copy list',1500)});
+  renderShortlist();
 
   document.querySelectorAll('form[data-form-type]').forEach(form=>form.addEventListener('submit',e=>{
     e.preventDefault();

@@ -1,30 +1,44 @@
-# Objects In Motion - Client Review Build
+# Objects In Motion - Client Review Website
 
-This is the Vercel-ready interactive redesign prepared by Emily James.
+Interactive website strategy and redesign prepared by Emily James for Robert Kalinovich / Objects In Motion.
 
-## Deploy
-
-1. Upload all files at the ZIP root to a GitHub repository.
-2. Import the repository into Vercel.
-3. Framework preset: Other.
-4. Build command: leave blank.
-5. Output directory: leave blank.
-6. Deploy.
-
-## What works in the front-end review build
+## What Robert can test from the front end
 
 - Complete multi-page navigation
-- Responsive desktop and mobile layout
-- Portfolio search and category filters
-- Dynamic artwork pages
-- Commission and placement forms
-- Multi-step form validation
-- Image selection previews
-- Email-ready enquiry summaries
-- Downloadable enquiry briefs
-- Collector preview request flow
-- Contextual implementation notes
+- Responsive desktop and mobile layouts
+- Searchable and filterable portfolio
+- Dynamic individual-artwork pages
+- Working saved-artwork shortlist with email and copy actions
+- Interactive room-placement study with upload, positioning controls and image download
+- Multi-step commission brief with validation
+- Placement and contact forms
+- Local image-selection previews
+- Email-ready and downloadable enquiry summaries
+- Collector-preview request flow
+- Contextual review notes written by Emily James
 
-## Wix Studio production connections
+## What will be connected in Wix Studio after approval
 
-After approval, the same experience will be rebuilt in Wix Studio and connected to Wix CMS, Forms, Contacts, Automations, Stores, analytics and the live domain. Inventory, secure file uploads, direct form submission and payment rules require Robert's confirmation and Wix dashboard access.
+- Complete portfolio in Wix CMS and dynamic artwork pages
+- Secure form and photograph uploads
+- Wix Contacts, notifications and branded automations
+- Confirmed inventory, pricing, payment, deposit and shipping rules
+- SEO titles, descriptions, redirects and Search Console
+- Analytics and conversion tracking
+- Accessibility, browser and performance testing
+- Existing domain and final launch
+
+## Deploy to Vercel through GitHub
+
+Keep every file and the `assets` folder at the repository root, beside `index.html`.
+
+After copying the files into your cloned GitHub repository, run:
+
+```bash
+git status
+git add -A
+git commit -m "Update Objects In Motion client review"
+git push origin main
+```
+
+Vercel will redeploy automatically when the repository is connected to the Vercel project.
